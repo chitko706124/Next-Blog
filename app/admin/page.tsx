@@ -1,30 +1,32 @@
 "use client";
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Plus } from 'lucide-react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function AdminDashboard() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<any[]>([]);
   const supabase = createClientComponentClient();
   const router = useRouter();
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       if (!session) {
-        router.push('/admin/login');
+        router.push("/admin/login");
         return;
       }
 
       const { data } = await supabase
-        .from('posts')
-        .select('*')
-        .order('created_at', { ascending: false });
-      
+        .from("posts")
+        .select("*")
+        .order("created_at", { ascending: false });
+
       setPosts(data || []);
     };
 
@@ -33,22 +35,21 @@ export default function AdminDashboard() {
 
   const handleTogglePublish = async (id: string, currentStatus: boolean) => {
     await supabase
-      .from('posts')
+      .from("posts")
       .update({ published: !currentStatus })
-      .eq('id', id);
-    
-    setPosts(posts.map(post => 
-      post.id === id ? { ...post, published: !currentStatus } : post
-    ));
+      .eq("id", id);
+
+    setPosts(
+      posts.map((post) =>
+        post.id === id ? { ...post, published: !currentStatus } : post
+      )
+    );
   };
 
   const handleDelete = async (id: string) => {
-    await supabase
-      .from('posts')
-      .delete()
-      .eq('id', id);
-    
-    setPosts(posts.filter(post => post.id !== id));
+    await supabase.from("posts").delete().eq("id", id);
+
+    setPosts(posts.filter((post) => post.id !== id));
   };
 
   return (
