@@ -2,8 +2,13 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
-import SupabaseProvider from "./supabase-provider";
+import dynamic from "next/dynamic";
 import { Navbar } from "@/components/ui/navbar";
+import { Footer } from "@/components/ui/footer";
+
+const SupabaseProvider = dynamic(() => import("./supabase-provider"), {
+  ssr: false,
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,11 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.className} flex flex-col min-h-screen`}
+        suppressHydrationWarning
+      >
         <SupabaseProvider>
           <Navbar />
-          <main className="min-h-screen bg-background">{children}</main>
+          <main className="flex-grow bg-background">{children}</main>
+          <Footer />
           <Toaster />
         </SupabaseProvider>
       </body>
