@@ -97,13 +97,14 @@
 // }
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Mail } from "lucide-react";
 import { Button } from "./button";
 import { cn } from "@/lib/utils";
 import { useSupabase } from "@/app/supabase-provider";
+import { useRouter } from "next/navigation";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -112,7 +113,10 @@ export function Navbar() {
   const isAdmin = pathname?.startsWith("/admin");
 
   const isActive = (path: string) => pathname === path;
-
+  const router = useRouter();
+  const handleNavigation = () => {
+    window.location.href = "/";
+  };
   const links = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
@@ -121,13 +125,32 @@ export function Navbar() {
     { href: "/privacy", label: "Privacy" },
   ];
 
+  useEffect(() => {
+    const handlePopState = () => {
+      window.location.reload();
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
+
   return (
     <nav className="bg-card border-b">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="text-xl font-bold">
+          {/* <Link href="/" className="text-xl font-bold">
             BlogSite
-          </Link>
+          </Link> */}
+
+          <button
+            onClick={() => handleNavigation()}
+            className=" text-xl font-bold"
+          >
+            BlogSite
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-4">
