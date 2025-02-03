@@ -26,7 +26,15 @@ export default async function PostPage({
         <div className="text-muted-foreground mb-8">
           {new Date(post.created_at).toLocaleDateString()}
         </div>
-        <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        <div
+          style={{
+            fontSize: "16px",
+            lineHeight: "1.6",
+            color: "#333",
+            fontFamily: "Arial, sans-serif",
+          }}
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
       </article>
     </div>
   );
