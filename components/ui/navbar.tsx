@@ -146,7 +146,7 @@ export function Navbar() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="text-xl font-bold">
-              BlogSite
+              SharinG
             </Link>
 
             {/* Desktop Navigation */}
