@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import dynamic from "next/dynamic";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
+import { useEffect } from "react";
+import Head from "next/head";
 
 const SupabaseProvider = dynamic(() => import("./supabase-provider"), {
   ssr: false,
@@ -22,16 +24,31 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  useEffect(() => {
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {
+      console.error("AdSense error:", e);
+    }
+  }, []);
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.className} flex flex-col min-h-screen`}
-        suppressHydrationWarning
-      >
+      <body className={inter.className} suppressHydrationWarning>
         <SupabaseProvider>
-          <Navbar />
-          <main className="flex-grow bg-background">{children}</main>
-          <Footer />
+          <Head>
+            {/* Google AdSense script */}
+            <script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5952419186869307"
+              crossOrigin="anonymous"
+            ></script>
+          </Head>
+          {/* <div className="flex flex-col min-h-screen"> */}
+          <div>
+            <Navbar />
+            <main className="flex-grow bg-background">{children}</main>
+            <Footer />
+          </div>
           <Toaster />
         </SupabaseProvider>
       </body>

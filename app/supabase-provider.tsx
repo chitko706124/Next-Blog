@@ -54,8 +54,8 @@ export default function SupabaseProvider({
 
   if (!isSupabaseReady) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="max-w-md w-full p-8 bg-card rounded-lg shadow-lg">
+      <div className="flex items-center justify-center flex-grow">
+        <div className="max-w-md w-full p-8 bg-card rounded-lg shadow-lg m-4">
           <h2 className="text-2xl font-semibold mb-4 text-center">
             Supabase Connection Required
           </h2>

@@ -61,6 +61,9 @@ export default function ContentPage() {
                           src={post.thumbnail_url}
                           alt={post.title}
                           fill
+                          priority={true}
+                          placeholder="empty"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-cover"
                         />
                       ) : (
