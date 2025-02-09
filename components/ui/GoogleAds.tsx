@@ -15,13 +15,6 @@ const GoogleAds = () => {
       script.crossOrigin = "anonymous";
       document.head.appendChild(script);
     }
-    // Manually trigger AdSense
-    try {
-      //@ts-ignore
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (e) {
-      console.error("AdSense failed to load", e);
-    }
   }, []);
 
   // return null;
