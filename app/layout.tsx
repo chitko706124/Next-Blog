@@ -42,6 +42,12 @@ export default function RootLayout({
           data-ad-client="ca-pub-5952419186869307"
         />
       </head> */}
+      <head>
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-5952419186869307"
+        ></meta>
+      </head>
       <body className={inter.className} suppressHydrationWarning>
         <SupabaseProvider>
           <div className="flex flex-col min-h-screen">
