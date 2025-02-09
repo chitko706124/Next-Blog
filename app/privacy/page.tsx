@@ -81,7 +81,7 @@ export default function PrivacyPage() {
             If you have any questions about this Privacy Policy, you can contact
             us at:
             <br />
-            Email: privacy@knowledge-sharing.online
+            Email: privacy@information-sharing.online
           </p>
         </section>
       </div>

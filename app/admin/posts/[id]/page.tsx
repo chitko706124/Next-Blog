@@ -127,6 +127,7 @@ export default function EditPost({ params }: { params: { id: string } }) {
             Content
           </label>
           <TipTapEditor
+            // content={post.content}
             content={post.content}
             onChange={(content) => setPost({ ...post, content })}
             onImageUpload={handleImageUpload}
