@@ -72,6 +72,12 @@
   }
 }
 
+.adsbygoogle {
+  min-width: 300px;
+  min-height: 250px;
+  background-color: black;
+}
+
 @layer base {
   * {
     @apply border-border;
