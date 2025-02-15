@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 
 import { TipTapEditor } from "@/components/ui/tiptap-editor";
 import { ImageUpload } from "@/components/ui/image-upload";
-import { TailwindEditor } from "@/components/ui/tailwind-editor";
+// import { TailwindEditor } from "@/components/ui/tailwind-editor";
 
 export default function EditPost({ params }: { params: { id: string } }) {
   const [post, setPost] = useState({
@@ -127,15 +127,15 @@ export default function EditPost({ params }: { params: { id: string } }) {
           <label htmlFor="content" className="block text-sm font-medium mb-1">
             Content
           </label>
-          {/* <TipTapEditor
+          <TipTapEditor
             content={post.content}
             onChange={(content) => setPost({ ...post, content })}
             onImageUpload={handleImageUpload}
-          /> */}
-          <TailwindEditor
-            content={post.content}
-            onChange={(content) => setPost({ ...post, content })}
           />
+          {/* <TailwindEditor
+            content={post.content}
+            onChange={(content) => setPost({ content })}
+          /> */}
         </div>
 
         <div className="flex justify-end space-x-4">
